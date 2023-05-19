@@ -2,7 +2,7 @@
     width: 200px;
 }
 .k{
-    width: fit-content;
+    width: auto;
 }
 
 
@@ -13,7 +13,5 @@
     .f{
         width: fit-content;
     }
-    .k{
-        width: fit-content;
-    }
+    
   }
