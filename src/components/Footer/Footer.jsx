@@ -4,7 +4,7 @@ import './Footer.css'
 const Footer = () => {
     return (
         <div className=' bg-black text-white p-10 '>
-            <div className="flex justify-around gap-2">
+            <div className="flex justify-around gap-2 k">
             <div id='dd' className="text-left align-center ">
                 <h4 className='font-bold m-3 fst-italic fs-5 '>Toy's<span className='text-warning'>G</span>ang</h4>
                 <div className="ms-3 para">

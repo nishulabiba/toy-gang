@@ -9,28 +9,28 @@ const Banner = () => {
         <div className=' bg-black'>
             <div className="carousel w-full">
   <div id="slide1" className="carousel-item relative w-full flex justify-center">
-    <img src={img4} className="w-1/2" />
+    <img src={img4} className="w-1/2 rounded-lg" />
     <div className="absolute flex justify-center gap-20 transform -translate-y-1/2 left-5 right-5 bottom-0">
       <a href="#slide4" className="btn btn-circle">❮</a> 
       <a href="#slide2" className="btn btn-circle">❯</a>
     </div>
   </div> 
   <div id="slide2" className="carousel-item relative w-full flex justify-center">
-    <img src={img2} className="w-1/2" />
+    <img src={img2} className="w-1/2 rounded-lg" />
     <div className="absolute flex justify-center gap-20 transform -translate-y-1/2 left-5 right-5 bottom-0">
       <a href="#slide1" className="btn btn-circle">❮</a> 
       <a href="#slide3" className="btn btn-circle">❯</a>
     </div>
   </div> 
   <div id="slide3" className="carousel-item relative w-full flex justify-center">
-    <img src={img3} className="w-1/2" />
+    <img src={img3} className="w-1/2 rounded-lg" />
     <div className="absolute flex justify-center gap-20 transform -translate-y-1/2 left-5 right-5 bottom-0">
       <a href="#slide2" className="btn btn-circle">❮</a> 
       <a href="#slide4" className="btn btn-circle">❯</a>
     </div>
   </div> 
   <div id="slide4" className="carousel-item relative w-full flex justify-center">
-    <img src={img1} className="w-1/2" />
+    <img src={img1} className="w-1/2 rounded-lg" />
     <div className="absolute flex justify-center gap-20 transform -translate-y-1/2 left-5 right-5 bottom-0">
       <a href="#slide3" className="btn btn-circle">❮</a> 
       <a href="#slide1" className="btn btn-circle">❯</a>

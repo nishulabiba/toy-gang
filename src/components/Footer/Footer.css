@@ -1,6 +1,9 @@
 #dd{
     width: 200px;
 }
+.k{
+    width: fit-content;
+}
 
 
 
@@ -8,6 +11,9 @@
 @media only screen and (max-width: 600px) {
 
     .f{
+        width: fit-content;
+    }
+    .k{
         width: fit-content;
     }
   }
