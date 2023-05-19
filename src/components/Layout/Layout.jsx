@@ -8,7 +8,7 @@ const Layout = () => {
     
 
     return (
-        <div>
+        <div className=' '>
             <Navbar></Navbar>
             <Outlet/>
             <Footer></Footer>
