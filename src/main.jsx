@@ -11,6 +11,8 @@ import ErrorPage from './components/ErrorPage/ErrorPage.jsx';
 import Home from './components/Home/Home.jsx';
 import Blogs from './components/Blogs/Blogs.jsx';
 import Login from './components/Login/Login.jsx';
+import Signup from './components/Signup/Signup.jsx';
+import AuthProvider from './providers/AuthProvider.jsx';
 
 const router = createBrowserRouter([
   {
@@ -29,12 +31,19 @@ const router = createBrowserRouter([
       {
         path: "/login",
         element: <Login></Login>
+      },
+      {
+        path: "/signUp",
+        element: <Signup></Signup>
       }
     ]
   },
 ]);
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
+    <AuthProvider>
+      
     <RouterProvider router={router} />
+    </AuthProvider>
   </React.StrictMode>,
 )
