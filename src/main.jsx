@@ -9,11 +9,13 @@ import {
 import Layout from './components/Layout/Layout.jsx';
 import ErrorPage from './components/ErrorPage/ErrorPage.jsx';
 import Home from './components/Home/Home.jsx';
-import Blogs from './Blogs/Blogs.jsx';
+import Blogs from './components/Blogs/Blogs.jsx';
+import Login from './components/Login/Login.jsx';
+
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Layout></Layout>,
+    element: <Layout></Layout> ,
     errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
@@ -22,7 +24,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/blogs",
-        element: <Blogs></Blogs>
+        element: <Blogs></Blogs>, 
+      },
+      {
+        path: "/login",
+        element: <Login></Login>
       }
     ]
   },

@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
-import Banner from '../../Banner/Banner';
+import Banner from './Banner/Banner';
+import Gallery from './Gallery/Gallery';
 
 const Home = () => {
 
     return (
       
         <div>
-           <Banner></Banner>
+            <Banner></Banner>
+            <Gallery></Gallery>
         </div>
     );
 };
