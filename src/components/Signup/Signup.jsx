@@ -12,20 +12,20 @@ const Signup = () => {
     const handleSignup = (event) =>{
         event.preventDefault();
         const form = event.target;
-        const name = form.name.value;
+        const displayName = form.displayName.value;
         const email = form.email.value;
         const password = form.password.value;
         const url = form.url.value;
-        console.log(name, email, password)
+        console.log(displayName, email, password)
 
         createUser(email, password)
-        .then ((result)=>{
-            const user = result.user;
-            console.log(user);
-        })
-        .then(error=>{
-            console.log(error)
-        })
+            .then ((result)=>{
+                const user = result.user;
+                console.log(user);
+            })
+            .catch(error=>{
+                console.log(error)
+            })
     }
     return (
         <div className=' bg-zinc-900 flex justify-center'>
@@ -37,7 +37,7 @@ const Signup = () => {
                     <label className="label">
                         <span className="label-text">Name</span>
                     </label>
-                    <input type="text" placeholder="name" name='name' className="input input-bordered" required />
+                    <input type="text" placeholder="name" name='displayName' className="input input-bordered" required />
                     </div>
                     <div className="form-control">
                     <label className="label">
@@ -59,7 +59,7 @@ const Signup = () => {
                     <input type="text" placeholder="photo url" name='url' className="input input-bordered" required />
                     </div>
                     <div className="form-control mt-6">
-                    <input className="btn btn-error btn-outline" type="submit" value="Sign Up" />
+                    <input className="btn btn-error btn-outline" type="submit" value="Sign Up"  />
                     <small>Already have an account? <Link className='font-bold text-error' to="/login">Login</Link></small>
                     
                     </div>
