@@ -7,6 +7,8 @@ export const AuthContext = createContext();
 const auth = getAuth(app);
 
 const AuthProvider = ({children}) => {
+
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
 

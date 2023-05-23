@@ -1,7 +1,7 @@
 
 import { useContext, useState} from 'react';
 
-import { Link } from 'react-router-dom';
+import { Link} from 'react-router-dom';
 import { AuthContext } from '../../providers/AuthProvider';
 
 const Login = () => {
@@ -22,8 +22,10 @@ const Login = () => {
                 console.log(user)
             })
             .catch(error=> console.log(error))
+            
 
-        setIsLoggedIn(true);            
+        setIsLoggedIn(true);
+                    
 
     }
     return (
