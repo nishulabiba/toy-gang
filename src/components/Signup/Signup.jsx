@@ -2,7 +2,7 @@ import React from 'react';
 import { useContext } from "react";
 
 
-import { Link } from 'react-router-dom';
+import { Link} from 'react-router-dom';
 import { AuthContext } from '../../providers/AuthProvider';
 
 const Signup = () => {
@@ -26,6 +26,7 @@ const Signup = () => {
             .catch(error=>{
                 console.log(error)
             })
+        
     }
     return (
         <div className=' bg-zinc-900 flex justify-center'>

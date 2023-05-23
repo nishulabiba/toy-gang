@@ -6,8 +6,6 @@ import { AuthContext } from '../../providers/AuthProvider';
 
 const Login = () => {
 
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
-
     const {signIn} = useContext(AuthContext);
 
     const handleLogin = (event) => {
@@ -15,18 +13,15 @@ const Login = () => {
         const form = event.target;
         const email = form.email.value;
         const password = form.password.value;
+        form.reset();
         console.log(email, password)
         signIn(email, password)
             .then(result=>{
                 const user = result.user;
                 console.log(user)
             })
-            .catch(error=> console.log(error))
+            .catch(error=> alert("Please, register first!", error) )
             
-
-        setIsLoggedIn(true);
-                    
-
     }
     return (
         <div className=' bg-zinc-900  '>

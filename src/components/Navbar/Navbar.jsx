@@ -4,19 +4,23 @@ import AuthProvider, { AuthContext } from '../../providers/AuthProvider';
 
 const Navbar = () => {
 
-const {user} = useContext(AuthContext);
+const {user, logOut} = useContext(AuthContext);
+
+
+const handleLogout = () => {
+  logOut()
+    .then()
+    .catch((err) => {
+      console.log(err);
+    });
+};
 
     const nav = < >
     <li><Link to="/">Home</Link></li>
     <li><Link to="/blogs">Blogs</Link></li>
     </>
 
-    const nav2 = <>
-    <li><Link to="/">My Toys</Link></li>
-    <li><Link to="/blogs">Add toys</Link></li>
-    <li><Link> Logout</Link></li>
-    <img src="" alt="" />
-    </>
+  
     return (
         <div>
             <div className="navbar  bg-black h-28">
@@ -47,7 +51,7 @@ const {user} = useContext(AuthContext);
                     </ul>
                   <img src={user.url}alt="" />
                   <div className='navbar-center hidden lg:flex'>
-                  <li className='menu menu-horizontal px-1'><Link> Logout</Link></li>
+                  <li className='menu menu-horizontal px-1'><button onClick={handleLogout}>Logout</button></li>
                   </div>
                  
                   </div>
