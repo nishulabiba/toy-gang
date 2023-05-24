@@ -3,8 +3,37 @@ import { useContext, useState} from 'react';
 
 import { Link} from 'react-router-dom';
 import { AuthContext } from '../../providers/AuthProvider';
+import { GoogleAuthProvider, getAuth, signInWithPopup } from 'firebase/auth';
 
 const Login = () => {
+    //google provider
+    
+    const handleGoogleLogin = () =>{
+        const providerG = new GoogleAuthProvider();
+        const googleAuth = getAuth();
+        signInWithPopup(googleAuth, providerG)
+        .then((result) => {
+            // This gives you a Google Access Token. You can use it to access the Google API.
+            const credential = GoogleAuthProvider.credentialFromResult(result);
+            const token = credential.accessToken;
+            // The signed-in user info.
+            const user = result.user;
+            console.log(user);
+            // IdP data available using getAdditionalUserInfo(result)
+            // ...
+        })
+        .catch((error) => {
+            // Handle Errors here.
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            // The email of the user's account used.
+            const email = error.customData.email;
+            console.log(errorMessage);
+            // ...
+        });
+    }
+
+
 
     const {signIn} = useContext(AuthContext);
 
@@ -58,6 +87,8 @@ const Login = () => {
                     
                     </div>
                     <small>New to our website? <Link className='font-bold text-error' to="/signUp">SignUp</Link></small>
+
+                    <button onClick={handleGoogleLogin} className="flex bg-white justify-center p-2 rounded-lg text-black mt-2 "> <img className='bg-white w-5 rounded-lg me-2' src="google.svg" alt="" /> SignIn with Google</button>
                 </div>
                 </form>
             </div>
