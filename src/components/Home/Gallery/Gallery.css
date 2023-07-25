@@ -2,7 +2,9 @@ img{
     width: 100px;
 }
 
-img:hover{
+.gal img:hover
+{
+    
     
     transform: scale(2);
 }
