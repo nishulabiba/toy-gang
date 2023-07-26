@@ -2,8 +2,9 @@ import React, { useEffect, useState } from 'react';
 import "./tabs.css"
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
-import SoftToy from '../../SoftToy/SoftToy';
 import Marvel from '../../Marvel/Marvel';
+import Avengers from '../../Avengers/Avengers';
+import Transformers from '../../Transformers/Transformers';
 
 const Tabbs = ({toys}) =>
  (
@@ -17,8 +18,11 @@ const Tabbs = ({toys}) =>
   
       <TabPanel> <Marvel toys ={toys}/></TabPanel>
 
-      <TabPanel>2</TabPanel>
-      <TabPanel>  </TabPanel>
+      <TabPanel>
+        <Transformers toys ={toys}/>
+      </TabPanel>
+      <TabPanel> 
+        <Avengers toys={toys}/> </TabPanel>
 
     </Tabs>
   );
