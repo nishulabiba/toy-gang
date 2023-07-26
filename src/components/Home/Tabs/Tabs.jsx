@@ -8,7 +8,7 @@ import Marvel from '../../Marvel/Marvel';
 const Tabbs = ({toys}) =>
  (
 
-    <Tabs id='t' className="bg-white">
+    <Tabs id='t' className=" bg-stone-600">
       <TabList className=' tab mb-10'>
         <Tab className='tab tab-lifted'>Marvel Universe</Tab>
         <Tab className='tab tab-lifted'>Transformers </Tab>
