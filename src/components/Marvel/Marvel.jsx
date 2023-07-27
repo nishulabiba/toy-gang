@@ -3,7 +3,6 @@ import React, { useEffect, useState } from 'react';
 const Marvel = ({toys}) => {
 
        const marvelToys = toys.filter(data => data.subCategory ==='Marvel')
-      console.log(marvelToys)
       const renderStars = (rating) => {
         const fullStars = Math.floor(rating);
         const hasHalfStar = rating - fullStars >= 0.5;
