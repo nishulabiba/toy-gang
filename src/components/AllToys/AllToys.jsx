@@ -6,6 +6,7 @@ const AllToys = () => {
     const { user } = useContext(AuthContext);
     const [data, setData] = useState([]);
     const [searchTerm, setSearchTerm] = useState(''); 
+    const [loading, setLoading] = useState(true);
   
     useEffect(() => {
       // Function to fetch data from the API and update the state
@@ -17,9 +18,11 @@ const AllToys = () => {
           // Limit the data to 20 rows
           const limitedData = jsonData.slice(0, 20);
   
-          setData(limitedData); // Update the 'data' state variable with the limited API response
+          setData(limitedData);
+          setLoading(false)
         } catch (error) {
           console.error('Error fetching data:', error);
+          setLoading(false)
         }
       };
   
@@ -46,6 +49,16 @@ const AllToys = () => {
         onChange={handleSearch}
       />
       </div>
+      { loading ? (
+        // Show loading spinner while data is being fetched
+          
+          <div className="toast toast-middle toast-center  ">
+          <div className=" alert alert-error opacity-50 rounded-3xl">
+            
+        <span className=' loading animate-bounce'>Loading....</span>
+          </div>
+        </div>
+      ): ( 
       <table className=' table-zebra w-full bg-slate-600 text-center'>
         <thead>
           <tr>
@@ -73,7 +86,7 @@ const AllToys = () => {
             </tr>
           ))}
         </tbody>
-      </table>
+      </table>) }
     </div>
     );
 };
