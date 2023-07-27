@@ -29,7 +29,7 @@ const Home = () => {
         <div>
             <Banner></Banner>
             <Gallery></Gallery>
-            <h1 className=' text-slate-200 text-4xl  font-serif font-bold text-center p-10'>Checkout our exciting categories!!   </h1>
+            <h1 className=' text-slate-200 text-4xl bg-black  font-serif font-bold text-center p-10'>Checkout our exciting categories!!   </h1>
             <Tabbs toys = {toys} ></Tabbs>
             <PrivateRoute></PrivateRoute>
         </div>

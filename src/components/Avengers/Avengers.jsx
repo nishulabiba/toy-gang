@@ -21,7 +21,7 @@ const Avengers = ({toys}) => {
       <div className='flex justify-center'>
 
           {
-                  avengersToys.map(toy=> <div className="card card-compact w-50 bg-black  mx-5  mb-5 p-5 shadow-xl text-gray-200 font-serif flex flex-col justify-center" key= {toy._id}>
+                  avengersToys.map(toy=> <div className="card card-compact w-50 bg-white mx-5  mb-5 p-5 shadow-xl text-zinc-700 font-serif flex flex-col justify-center" key= {toy._id}>
                   <figure ><img className=' w-52 h-48 rounded-sm' src={toy.pictureUrl} alt="URL" /></figure>
                   <div className="card-body">
                   <p className=" text-lg font-bold w-72 ">Toy Name: {toy.toyName}</p>

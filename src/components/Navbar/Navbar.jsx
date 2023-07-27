@@ -17,12 +17,13 @@ const handleLogout = () => {
 
     const nav = < >
     <li><Link to="/">Home</Link></li>
+    <li><Link to="/">All toys</Link></li>
     <li><Link to="/blogs">Blogs</Link></li>
     </>
 
   
     return (
-        <div>
+        <div className='w-full'>
             <div className="navbar  bg-black h-28">
               <div className="navbar-start">
                 <div className="dropdown">
@@ -35,9 +36,8 @@ const handleLogout = () => {
                   <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
                   {nav}
                   
-                  <li><Link to="/">Home</Link></li>
-                  <li><Link to="/blogs">Blogs</Link></li>
-                  <li className='menu menu-horizontal px-1'><button onClick={handleLogout}>Logout</button></li>
+                
+                  <li className='mx-0 px-0'><button className='px-0 mx-0' onClick={handleLogout}>Logout</button></li>
 
                   </ul>
                   
@@ -64,7 +64,8 @@ const handleLogout = () => {
                     <ul className='menu menu-horizontal px-1'>
                       
                   <li><Link to="/">My Toys</Link></li>
-                  <li><Link to="/blogs">Add toys</Link></li>
+                  <li><Link to="/">Add toys</Link></li>
+                  
                     </ul>
                   <img src={user.url}alt="" />
                   <div className='navbar-center hidden lg:flex'>
