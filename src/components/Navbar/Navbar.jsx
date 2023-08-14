@@ -63,13 +63,16 @@ const handleLogout = () => {
                   <div className="navbar-center hidden lg:flex">
                     <ul className='menu menu-horizontal px-1'>
                       
-                  <li><Link to="/">My Toys</Link></li>
-                  <li><Link to="/">Add toys</Link></li>
+                  <li><Link to="/myToys">My Toys</Link></li>
+                  <li><Link to="/addToys">Add toys</Link></li>
+                  <div className=' flex flex-col justify-center items-center'><img className=' w-12 rounded-full' src={user.photoURL} alt="" />
+                  <div className=" text-xs
+                  ">{user.displayName}</div></div>
+                  
                   
                     </ul>
-                  <img src={user.url}alt="" />
                   <div className='navbar-center hidden lg:flex'>
-                  <li className='menu menu-horizontal px-1'><button onClick={handleLogout}>Logout</button></li>
+                  <li className='menu menu-horizontal px-1 btn btn-error btn-outline ms-20 '><button  onClick={handleLogout}>Logout</button></li>
                   </div>
                  
                   </div>

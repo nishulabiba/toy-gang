@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { AuthContext } from '../../providers/AuthProvider';
 
 const Avengers = ({toys}) => {
+  const {user} =useContext(AuthContext)
     const avengersToys = toys.filter(data => data.subCategory ==='Avengers')
     
     const renderStars = (rating) => {
@@ -18,7 +20,7 @@ const Avengers = ({toys}) => {
       return stars;
     };
   return (
-      <div className='flex justify-center'>
+      <div className=' grid grid-cols-3 place-content-center w-5/6 place-items-center mx-28 '>
 
           {
                   avengersToys.map(toy=> <div className="card card-compact w-50 bg-white mx-5  mb-5 p-5 shadow-xl text-zinc-700 font-serif flex flex-col justify-center" key= {toy._id}>
@@ -28,7 +30,30 @@ const Avengers = ({toys}) => {
                   <p>Price: ${toy.price}</p>
                   <p>Rating: {renderStars(toy.rating)}</p>
                   <div className="card-actions justify-center">
-                      <button className="btn btn-error btn-outline">View Details</button>
+                  {user?
+                       (
+                        <div className="">
+                          <label htmlFor={toy._id} className="btn btn-error btn-outline">
+                       View Details</label>
+                       <input type="checkbox" id={toy._id} className="modal-toggle" />
+                              <div className="modal">
+                              <div className="modal-box w-3/5 h-4/5 p-10 max-w-5xl gap-1 bg-white flex flex-col justify-center items-center">
+                                  <img className=' mt-10' src={toy.pictureUrl} alt="" />
+                                  <h3 className="text-lg font-bold">{toy.toyName}</h3>
+                                  <p className="p-0">Seller: {toy.sellerName}</p>
+                                  <p className="p-0">Seller email: {toy.sellerEmail}</p>
+                                  <p className="p-0">Price: ${toy.price}</p>
+                                  <p className="p-0">Available quantity: {toy.availableQuantity}</p>
+                                  <p className="p-0">Rating: {renderStars(toy.rating)}</p>
+                                  <p>Description: {toy.description}</p>
+                                  <label className="modal-backdrop btn btn-sm btn-circle btn-ghost absolute right-2 top-2" htmlFor={toy._id}>✕ </label>
+                                </div>
+                                
+                              </div>
+                        </div>
+                        ):(<Link to="/login" className="btn btn-error btn-outline">
+                       View Details</Link>
+                              )}
                   </div>
               </div>
             </div>)

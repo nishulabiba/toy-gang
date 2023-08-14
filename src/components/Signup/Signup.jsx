@@ -1,77 +1,69 @@
-import React from 'react';
-import { useContext } from "react";
-import { Link} from 'react-router-dom';
-import { useForm } from 'react-hook-form';
+import React, { useContext, useState } from 'react';
+import { useForm } from "react-hook-form"
+import { Link, redirect } from 'react-router-dom';
 import { AuthContext } from '../../providers/AuthProvider';
-
+import { getDatabase } from 'firebase/database';
 const Signup = () => {
-    const { register, handleSubmit, watch, formState: { errors } } = useForm()
-        const onSubmit = data => console.log(data);
+  const {createUser} = useContext(AuthContext);
+  const [error, setError] = useState('');
+  
+    const {
+        register,
+        handleSubmit,
+        watch,
+        formState: { errors },
+      } = useForm()
+    
+    
+      const onSubmit = (data) => { console.log(data)// watch input value by passing the name of it
+      if(!/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/.test(data.password)) {
+        setError("Password not valid!")
+        return ;
+      }
+      createUser( data.email, data.password)
+        .then((result)=>{
+          const user ={
+            uid: result.user.uid,
+            displayName: data.username,
+            email: data.email,
+            photoURL: data.photoUrl
+          };
+          handleSubmit(onSubmit);
+          console.log(user);
 
-    const {createUser} = useContext(AuthContext);
-
-    const handleSignup = (event) =>{
-        event.preventDefault();
-        const form = event.target;
-        const displayName = form.displayName.value;
-        const email = form.email.value;
-        const password = form.password.value;
-        const url = form.url.value;
-        console.log(displayName, email, password)
-
-        createUser(email, password)
-            .then ((result)=>{
-                const user = result.user;
-                handleSubmit(onSubmit);
-                console.log(user);
-            })
-            .catch(error=>{
-                console.log(error)
-            })
+          
+          })
+        .catch(error=>{
+            console.log(error) 
         
+      })
     }
-    return (
-        <div className=' bg-zinc-900 flex justify-center'>
-             <div className="card bg-black flex-shrink-0 w-full max-w-sm shadow-2xl m-20 ">
-                <form onSubmit={handleSignup} >
-                    
-                <div className="card-body">
-                <div className="form-control">
-                    <label className="label">
-                        <span className="label-text">Name</span>
-                    </label>
-                    <input type="text" placeholder="name" name='displayName' className="input input-bordered" required {...register("name")} />
-                    </div>
-                    <div className="form-control">
-                    <label className="label">
-                        <span className="label-text">Email</span>
-                    </label>
-                    <input type="text" placeholder="email" name='email' className="input input-bordered" required {...register("email")} />
-                    </div>
-                    <div className="form-control">
-                    <label className="label">
-                        <span className="label-text">Password</span>
-                    </label>
-                    <input type="password" name='password' placeholder="password" className="input input-bordered" required {...register("password")} />
-                   
-                    </div>
-                    <div className="form-control">
-                    <label className="label">
-                        <span className="label-text">Photo URL</span>
-                    </label>
-                    <input type="text" placeholder="photo url" name='url' className="input input-bordered" required {...register("url")} />
-                    </div>
-                    <div className="form-control mt-6">
-                    <input className="btn btn-error btn-outline" type="submit" value="Sign Up"  />
-                    <small>Already have an account? <Link className='font-bold text-error' to="/login">Login</Link></small>
-                    
-                    </div>
-                </div>
-                </form>
-            </div>
-            
-        </div>
-    );
-};
+     
+   
+    
+  return (
+    <div className=" bg-black flex justify-center">
+      <img className='w-96' src="https://th.bing.com/th/id/OIP.yKDmgX_VQKhjMZJuxV864wHaKU?pid=ImgDet&rs=1" alt="" />
+    <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col bg-white w-96 justify-center items-center gap-5  p-10'>
+      {/* register your input into the hook by invoking the "register" function */}
+      <input type='text' className="input input-bordered bg-black" placeholder='Enter username'  {...register("username")} />
+      <input type='text' className="input input-bordered bg-black" placeholder='Enter photo url'  {...register("photoUrl")} />
+      
+      <input type='email' className="input input-bordered bg-black" placeholder='Enter email'  {...register("email")} />
 
-export default Signup;
+
+      {/* include validation with required or other standard HTML validation rules */}
+      <p className=' text-red-600'>{error}</p>
+      <input placeholder='Enter password' type='password' className="input input-bordered bg-black" {...register("password", { required: true })} />
+      <small>Already have an account? <Link className='font-bold text-error' to="/login">Login</Link></small> 
+      {/* errors will return when field validation fails  */}
+      {errors.password && <span>This field is required</span>}
+
+
+      <input className='btn-error btn btn-outline' type="submit" />
+    </form>
+    </div>
+  )
+}
+
+export default Signup

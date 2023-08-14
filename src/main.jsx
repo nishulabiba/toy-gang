@@ -14,6 +14,11 @@ import Login from './components/Login/Login.jsx';
 import Signup from './components/Signup/Signup.jsx';
 import AuthProvider from './providers/AuthProvider.jsx';
 import AllToys from './components/AllToys/AllToys.jsx';
+import DetailsPage from './components/DetailsPage/DetailsPage.jsx';
+import AddToys from './components/AddToys/AddToys.jsx';
+import PrivateRoute from './PrivateRoute/PrivateRoute.jsx';
+import MyToys from './components/MyToys/MyToys.jsx';
+import Update from './components/Update/Update.jsx';
 
 const router = createBrowserRouter([
   {
@@ -40,7 +45,35 @@ const router = createBrowserRouter([
       {
         path: "/alltoys",
         element: <AllToys></AllToys>
+      },
+     
+      {
+        path: "/addToys",
+        element: <AddToys></AddToys>
+      },
+      {
+        path: "/alltoys/:id",
+        element:<PrivateRoute> 
+          <DetailsPage> </DetailsPage>
+          </PrivateRoute>
+      },
+      {
+        path:"/:id",
+        element:<PrivateRoute>
+          <DetailsPage></DetailsPage>
+        </PrivateRoute>
       }
+      ,{
+        path: "/myToys",
+        element: <MyToys></MyToys>,
+        
+          
+      },
+      {
+        path: "/myToys/:id",
+        element: <Update></Update>
+      }
+    
     ]
   },
 ]);

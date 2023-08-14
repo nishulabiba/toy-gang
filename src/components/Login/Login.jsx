@@ -1,11 +1,13 @@
 
 import { useContext, useState} from 'react';
 
-import { Link} from 'react-router-dom';
+import { Link , Navigate, redirect} from 'react-router-dom';
 import { AuthContext } from '../../providers/AuthProvider';
 import { GoogleAuthProvider, getAuth, signInWithPopup } from 'firebase/auth';
 
 const Login = () => {
+    const {user} = useContext(AuthContext)
+    
     //google provider
     
     const handleGoogleLogin = () =>{
@@ -13,24 +15,17 @@ const Login = () => {
         const googleAuth = getAuth();
         signInWithPopup(googleAuth, providerG)
         .then((result) => {
-            // This gives you a Google Access Token. You can use it to access the Google API.
             const credential = GoogleAuthProvider.credentialFromResult(result);
             const token = credential.accessToken;
             // The signed-in user info.
             const user = result.user;
-            console.log(user);
-            // IdP data available using getAdditionalUserInfo(result)
-            // ...
+            console.log(user)
+            
         })
         .catch((error) => {
-            // Handle Errors here.
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            // The email of the user's account used.
-            const email = error.customData.email;
-            console.log(errorMessage);
-            // ...
+            console.log(error.message)
         });
+       
     }
 
 
@@ -50,7 +45,11 @@ const Login = () => {
                 console.log(user)
             })
             .catch(error=> alert("Please, register first!", error) )
+       
             
+    }
+    if(user){
+        <Navigate  to='/' replace></Navigate>
     }
     return (
         <div className=' bg-zinc-900  '>
@@ -83,10 +82,12 @@ const Login = () => {
                     </label>
                     </div>
                     <div className="form-control mt-6">
-                    <input className="btn btn-error btn-outline" type="submit" value="Login" />
+                    <button className="btn btn-error btn-outline" type="submit"  >Login
+                    </button>
                     
                     </div>
                     <small>New to our website? <Link className='font-bold text-error' to="/signUp">SignUp</Link></small>
+                    
 
                     <button onClick={handleGoogleLogin} className="flex bg-white justify-center p-2 rounded-lg text-black mt-2 "> <img className='bg-white w-5 rounded-lg me-2' src="google.svg" alt="" /> SignIn with Google</button>
                 </div>

@@ -9,14 +9,14 @@ import Transformers from '../../Transformers/Transformers';
 const Tabbs = ({toys}) =>
  (
 
-    <Tabs id='t' className="bg-black">
+    <Tabs id='t' className="bg-black ">
       <TabList className=' tab mb-10'>
-        <Tab className='tab tab-lifted'>Marvel Universe</Tab>
+        <Tab className='tab tab-lifted '>Marvel Universe</Tab>
         <Tab className='tab tab-lifted'>Transformers </Tab>
         <Tab className='tab tab-lifted'> Avengers</Tab>
       </TabList>
   
-      <TabPanel> <Marvel toys ={toys}/></TabPanel>
+      <TabPanel className="grid place-content-center"  > <Marvel toys ={toys}/></TabPanel>
 
       <TabPanel>
         <Transformers toys ={toys}/>
