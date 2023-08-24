@@ -17,7 +17,7 @@ const Home = () => {
     useEffect(() => {
       const fetchData = async () => {
         try {
-          const response = await fetch('http://localhost:5000/toys'); // Replace the URL with your API endpoint
+          const response = await fetch('https://assignment11-server-green.vercel.app/toys'); // Replace the URL with your API endpoint
           const data = await response.json(); // Parse the response as JSON
           setToys(data); 
           setLoading(false)

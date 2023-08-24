@@ -22,13 +22,13 @@ const Update = () => {
   console.log(id);
 
   useEffect(()=> {
-    fetch(`http://localhost:5000/toy/${id}`)
+    fetch(`https://assignment11-server-green.vercel.app/toy/${id}`)
     .then(res=> res.json())
     .then(result=> setData(result))
   },[])
 
     const onSubmit =(data) =>{
-      fetch(`http://localhost:5000/update/${id}`, {
+      fetch(`https://assignment11-server-green.vercel.app/update/${id}`, {
       method: 'PATCH',
       headers: {"Content-Type" : "application/json"},
       body: JSON.stringify(data)

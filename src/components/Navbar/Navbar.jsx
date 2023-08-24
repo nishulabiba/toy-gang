@@ -53,7 +53,7 @@ const handleLogout = () => {
                 )
               }
                 </div>
-                <Link to="/" className="btn btn-ghost normal-case text-4xl">Toy's
+                <Link to="/" className="btn btn-ghost normal-case text-4xl">Toy
                     <img className="w-20" src="hero.png" alt="" /> <span className=' text-amber-600 font-bold'>G</span>ang</Link>
               </div>
               <div className="navbar-center hidden lg:flex">

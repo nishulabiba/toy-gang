@@ -7,7 +7,7 @@ const DetailsPage = () => {
     const {id} = useParams()
     const [data, setData] = useState([])
     useEffect(()=> { 
-        fetch(`http://localhost:5000/toy/${id}`)
+        fetch(`https://assignment11-server-green.vercel.app/toy/${id}`)
         .then(res=> res.json())
         .then(result=> setData(result))
       },[])

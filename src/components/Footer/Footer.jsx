@@ -7,7 +7,7 @@ const Footer = () => {
             <div className="flex justify-between gap-2 k">
             <div id='dd' className="text-left align-center ">
             <img className=' ms-6 w-12' src="hero.png" alt="" />
-                <h4 className='font-bold m-3 fst-italic fs-5 '>Toy's
+                <h4 className='font-bold m-3 fst-italic fs-5 '>Toy
                 
                 <span className='text-warning'>G</span>ang</h4>
                 <div className="ms-3 para">

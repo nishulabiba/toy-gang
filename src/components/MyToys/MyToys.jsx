@@ -22,7 +22,7 @@ const MyToys = () => {
       // Function to fetch data from the API and update the state
       const fetchData = async () => {
         try {
-          const response = await fetch('http://localhost:5000/toys'); // Replace the URL with your API endpoint
+          const response = await fetch('https://assignment11-server-green.vercel.app/toys'); // Replace the URL with your API endpoint
           const jsonData = await response.json(); // Parse the response as JSON
         
           
@@ -53,7 +53,7 @@ const MyToys = () => {
   };
 
    const handleDelete = (id) =>{
-    fetch(`http://localhost:5000/delete/${id}`, {
+    fetch(`https://assignment11-server-green.vercel.app/delete/${id}`, {
       method: 'DELETE',
       headers: {"Content-Type" : "application/json"}
     })

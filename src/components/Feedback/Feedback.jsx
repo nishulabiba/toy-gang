@@ -7,7 +7,7 @@ const Feedback = () => {
   <div className="hero-content flex-col lg:flex-row-reverse">
     <div className="text-center lg:text-left">
       <h1 className="text-5xl font-bold">Please , give us your valuable feedback</h1>
-      <p className="py-6"><small>We value our customers..</small></p>
+      <p className="py-6"><small>We value our customer's opinion..</small></p>
     </div>
     <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-black ms-24">
       <div className="card-body p-10">
