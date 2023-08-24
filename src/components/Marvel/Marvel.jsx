@@ -52,7 +52,7 @@ const Marvel = ({toys}) => {
                                 </div>
                               </div>
                         </div>
-                        ):(<Link to="/login" className="btn btn-error btn-outline">
+                        ):(<Link to="/user" className="btn btn-error btn-outline">
                        View Details</Link>
                               )}
                   

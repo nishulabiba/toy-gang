@@ -1,8 +1,13 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../providers/AuthProvider';
 import { Link } from 'react-router-dom';
+import useTitle from '../../hooks/useTitle';
 
 const MyToys = () => {
+
+  useTitle('My Toys')
+  
+
   
     const {user} = useContext(AuthContext)
     const [data , setData] = useState([]);
@@ -10,6 +15,8 @@ const MyToys = () => {
     const [ok, setOk] = useState(false)
 
     const [loading, setLoading] = useState(true);
+    const [ascending, setAscending] = useState(true)
+    const [d, setD] = useState([])
    
     useEffect(() => {
       // Function to fetch data from the API and update the state
@@ -18,7 +25,10 @@ const MyToys = () => {
           const response = await fetch('http://localhost:5000/toys'); // Replace the URL with your API endpoint
           const jsonData = await response.json(); // Parse the response as JSON
         
-          setData(jsonData);
+          
+          const email = user?.email;
+          const filtered = jsonData.filter(data => data.sellerEmail === email)
+          setData(filtered);
           setLoading(false)
         } catch (error) {
           console.error('Error fetching data:', error);
@@ -27,8 +37,20 @@ const MyToys = () => {
       };
       fetchData(); // Call the fetch function when the component mounts
     }, [control]);
-   const email = user?.email;
-   const filtered = data.filter(data => data.sellerEmail === email)
+   const handleSort = () => {
+    const sortedData = [...data];
+
+    if (ascending) {
+      sortedData.sort((a, b) => a.price - b.price);
+      setLoading(false)
+    } else {
+      sortedData.sort((a, b) => b.price - a.price);
+      setLoading(false)
+    }
+
+    setData(sortedData);
+    setAscending(!ascending);
+  };
 
    const handleDelete = (id) =>{
     fetch(`http://localhost:5000/delete/${id}`, {
@@ -44,14 +66,18 @@ const MyToys = () => {
     })
    }
 
+
   
 
     return (
         <div className=' bg-black pt-5'>
       <div className="flex flex-col justify-center items-center gap-5 m-5">
       <h1 className='font-bold  text-2xl'> My <span className=' text-amber-500'>Toy</span> Products</h1>
-     
+      <span className='text-sm font-semibold'>Sort</span><button className='btn btn-warning btn-outline' onClick={handleSort}>
+        {ascending ? 'Descending' : 'Ascending'}
+      </button>
       </div>
+      
       
       { loading ? (
         // Show loading spinner while data is being fetched
@@ -76,7 +102,7 @@ const MyToys = () => {
           </tr>
         </thead>
         <tbody>
-          {filtered.map((item, index) => (
+          {data.map((item, index) => (
             <tr key={index}>
               
               <td>{item.toyName}</td>

@@ -1,11 +1,16 @@
 import React, { useContext, useState } from 'react';
 import { useForm } from "react-hook-form"
-import { Link, redirect } from 'react-router-dom';
+import { Link, Navigate, redirect, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../providers/AuthProvider';
 import { getDatabase } from 'firebase/database';
+import 'firebase/auth';
+import useTitle from '../../hooks/useTitle';
 const Signup = () => {
-  const {createUser} = useContext(AuthContext);
+  const navigate = useNavigate()
+  const {createUser, user} = useContext(AuthContext);
   const [error, setError] = useState('');
+
+  useTitle('SignUp')
   
     const {
         register,
@@ -28,8 +33,11 @@ const Signup = () => {
             email: data.email,
             photoURL: data.photoUrl
           };
+
           handleSubmit(onSubmit);
           console.log(user);
+          form.reset()
+          navigate('/login')
 
           
           })
@@ -37,7 +45,24 @@ const Signup = () => {
             console.log(error) 
         
       })
+      const user = firebase.auth().currentUser;
+      if (user) {
+        const newDisplayName = data.displayName // Replace with the desired display name
+        
+        user
+          .updateProfile({
+            displayName: newDisplayName
+          })
+          .then(() => {
+            console.log("Display name updated successfully");
+          })
+          .catch((error) => {
+            console.error("Error updating display name:", error);
+          });
+      }
     }
+
+    
      
    
     
@@ -62,6 +87,9 @@ const Signup = () => {
 
       <input className='btn-error btn btn-outline' type="submit" />
     </form>
+    {
+      user?(<Navigate to="/login"/>):( <div className=""></div> )
+    }
     </div>
   )
 }

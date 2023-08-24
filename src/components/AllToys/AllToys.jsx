@@ -1,11 +1,14 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../providers/AuthProvider';
 import { Link } from 'react-router-dom';
+import useTitle from '../../hooks/useTitle';
 
 const AllToys = () => {
+  const {user} = useContext(AuthContext)
     const [data, setData] = useState([]);
     const [searchTerm, setSearchTerm] = useState(''); 
     const [loading, setLoading] = useState(true);
+    useTitle('All Toys')
   
     useEffect(() => {
       // Function to fetch data from the API and update the state

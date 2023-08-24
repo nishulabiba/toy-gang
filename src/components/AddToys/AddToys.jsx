@@ -1,9 +1,11 @@
 import { useContext, useState } from "react"
 import { useForm }  from "react-hook-form"
 import { AuthContext } from "../../providers/AuthProvider"
+import useTitle from "../../hooks/useTitle"
 
 
 export default function AddToys() {
+  useTitle('Add Toys')
   const {
     register,
     handleSubmit,
@@ -49,28 +51,28 @@ export default function AddToys() {
     /* "handleSubmit" will validate your inputs before invoking "onSubmit" */
     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-5 p-20 justify-center items-center">
       {/* register your input into the hook by invoking the "register" function */}
-      <input className=" input input-primary w-80" type="text" value={name}{...register("sellerName")} />
-      <input className=" input input-primary w-80" type="email" value={email} {...register("sellerEmail")} />
-      <input className=" input input-primary w-80" placeholder="Enter the toy photo url" {...register("pictureUrl")} />
-      <input className=" input input-primary w-80" placeholder="Enter your toy name" {...register("toyName")} />
-      <input className=" input input-primary w-80" type="number" placeholder="Enter price" {...register("price")} />
-      <input className=" input input-primary w-80" type="number" max={5} min={0}  placeholder="Enter rating" {...register("rating")} />
+      < input required className=" input input-primary w-80" type="text" value={name}{...register("sellerName")} />
+      < input required className=" input input-primary w-80" type="email" value={email} {...register("sellerEmail")} />
+      < input required className=" input input-primary w-80" placeholder="Enter the toy photo url" {...register("pictureUrl")} />
+      < input required className=" input input-primary w-80" placeholder="Enter your toy name" {...register("toyName")} />
+      < input required className=" input input-primary w-80" type="number" placeholder="Enter price" {...register("price")} />
+      < input required className=" input input-primary w-80" type="number" max={5} min={0}  placeholder="Enter rating" {...register("rating")} />
       <select  {...register("subCategory")}  className="select select-primary  w-full max-w-xs">
         
         <option>Marvel</option>
         <option>Transformers</option>
         <option>Avengers</option>
       </select>
-      <input className=" input input-primary w-80" type="number" placeholder="Enter quantity available" {...register("availableQuantity")} />
+      < input required className=" input input-primary w-80" type="number" placeholder="Enter quantity available" {...register("availableQuantity")} />
 
 
       {/* include validation with required or other standard HTML validation rules */}
-      <input className=" input input-primary w-80" placeholder="Enter description" {...register("description", { required: true })} />
+      < input required className=" input input-primary w-80" placeholder="Enter description" {...register("description", { required: true })} />
       {/* errors will return when field validation fails  */}
       {errors.exampleRequired && <span>This field is required</span>}
 
 
-      <input className="btn btn-primary btn-outline" type="submit" />
+      < input className="btn btn-primary btn-outline" type="submit" />
       {
                 ok?(
                   <div className="toast toast-top toast-end">

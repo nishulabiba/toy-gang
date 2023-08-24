@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import useTitle from '../../hooks/useTitle';
 
 const DetailsPage = () => {
+  useTitle('Details')
     const {id} = useParams()
     const [data, setData] = useState([])
     useEffect(()=> { 

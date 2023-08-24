@@ -5,8 +5,10 @@ import { AuthContext } from '../../providers/AuthProvider';
 
 import {toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import useTitle from '../../hooks/useTitle';
 
 const Update = () => { 
+  useTitle('Update')
   const {
     register,
     handleSubmit,
@@ -51,23 +53,33 @@ const Update = () => {
             
            <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-5 p-20 justify-center items-center">
       {/* register your input into the hook by invoking the "register" function */}
+      <h1 className='text-2xl font-serif font-semibold'>Update toy information for <span className=' text-yellow-500'>{data.toyName}</span></h1>
+      <label className='text-xs text-left ms-0 me-64'>Your Name</label>
       <input aria-label='name' className=" input input-primary w-80" type="text" value={name}{...register("sellerName")} />
+      <label className='text-xs text-left ms-0 me-64'>Email</label>
       <input className=" input input-primary w-80" type="email" value={email} {...register("sellerEmail")} />
-      <input className=" input input-primary w-80" defaultValue={data.pictureUrl} {...register("pictureUrl")} />
-      <input className=" input input-primary w-80" defaultValue={data.toyName} {...register("toyName")} />
-      <input className=" input input-primary w-80" type="number" defaultValue={data.price} {...register("price")} />
-      <input className=" input input-primary w-80" type="number" max={5} min={0}  defaultValue={data.rating} {...register("rating")} />
-      <select  {...register("subCategory")} defaultValue={data.subCategory} className="select select-primary  w-full max-w-xs">
+      <label className='text-xs text-left ms-0 me-64'>PictureUrl</label>
+      <input className=" input input-primary w-80" placeholder='Enter picture url ' defaultValue={data.pictureUrl} {...register("pictureUrl")} />
+      <label className='text-xs text-left ms-0 me-64'>Toy Name</label>
+      <input className=" input input-primary w-80" placeholder='Enter toy name'  defaultValue={data.toyName} {...register("toyName")} />
+      <label className='text-xs text-left ms-0 me-64'>Price</label>
+      <input className=" input input-primary w-80" placeholder='Enter price'  type="number" defaultValue={data.price} {...register("price")} />
+      <label className='text-xs text-left ms-0 me-64'>Rating</label>
+      <input className=" input input-primary w-80" placeholder='Enter rating'  type="number" max={5} min={0}  defaultValue={data.rating} {...register("rating")} />
+      <label className='text-xs text-left ms-0 me-64'>Sub-Category</label>
+      <select  {...register("subCategory")}  defaultValue={data.subCategory} className="select select-primary  w-full max-w-xs">
         
         <option>Marvel</option>
         <option>Transformers</option>
         <option>Avengers</option>
       </select>
-      <input className=" input input-primary w-80" type="number" defaultValue={data.availableQuantity} {...register("availableQuantity")} />
+      <label className='text-xs text-left ms-0 me-64'>Quantity Available</label>
+      <input className=" input input-primary w-80" placeholder='Enter available quantity'  type="number" defaultValue={data.availableQuantity} {...register("availableQuantity")} />
 
 
       {/* include validation with required or other standard HTML validation rules */}
-      <input className=" input input-primary w-80" defaultValue={data.description} {...register("description", { required: true })} />
+      <label className='text-xs text-left ms-0 me-64'>Toy Description</label>
+      <input className=" input input-primary w-80" placeholder='Enter description'  defaultValue={data.description} {...register("description", { required: true })} />
       {/* errors will return when field validation fails  */}
       {errors.exampleRequired && <span>This field is required</span>}
 
